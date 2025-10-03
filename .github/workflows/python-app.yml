@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +24,29 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: ✅ Run app check
+    - name: ✅ Check Python app
+      id: check_app
       run: |
-        python app.py --help || true  # Make sure app.py is runnable
+        if python app.py --help; then
+          echo "status=success" >> $GITHUB_OUTPUT
+        else
+          echo "status=failure" >> $GITHUB_OUTPUT
+        fi
 
-    # Optional: Add test step if you have tests
-    # - name: 🧪 Run tests
-    #   run: |
-    #     pytest  # or another test command
+    - name: 📝 Update README with status
+      run: |
+        STATUS="${{ steps.check_app.outputs.status }}"
+        DATE=$(date '+%B %d, %Y')
+        if [[ "$STATUS" == "success" ]]; then
+          BADGE="✅ Successful"
+        else
+          BADGE="❌ Failed"
+        fi
+
+        # Update README.md (replaces line starting with 'Last Run:')
+        sed -i '/^Last Run:/c\Last Run: '"$BADGE"' on '"$DATE" README.md
+
+    - name: 🚀 Commit changes to README
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "📄 Update README with latest run status"
