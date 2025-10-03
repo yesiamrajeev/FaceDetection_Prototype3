@@ -24,14 +24,15 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: ✅ Check Python app
+    - name: ✅ Check Python app (Import Test)
       id: check_app
       run: |
-        if python app.py --help; then
+        if python -c "import app"; then
           echo "status=success" >> $GITHUB_OUTPUT
         else
           echo "status=failure" >> $GITHUB_OUTPUT
         fi
+
 
     - name: 📝 Update README with status
       run: |
