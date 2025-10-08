@@ -4,7 +4,7 @@
 📌 This repository focuses on building a **Face Detection Attendance System** using Python, OpenCV, and Flask — integrating machine learning with real-time web functionality.  
 Our aim is to help beginners understand how AI and web frameworks work together, while fostering community collaboration through **Hacktoberfest 2025**.  
 
----
+
 
 ## 🌱 Hacktoberfest 2025 Is Here!  
 Make your **first open-source contribution** right here 🚀  
@@ -18,7 +18,7 @@ You’ll learn how to:
 - Structure a Python project  
 - Contribute meaningfully to open source  
 
----
+
 
 ## 🧩 How to Contribute
 Follow these simple steps to make your **first pull request** 👇  
@@ -47,7 +47,7 @@ There are multiple ways to contribute:
 
 💡 **Tip:** You can also improve the documentation or fix typos in this README!
 
----
+
 
 ## 📸 Mandatory for Pull Request Approval  
 
@@ -71,7 +71,7 @@ Video demo
 
 Without screenshots and video proof, **PRs will not be merged**.
 
----
+
 
 ## 🧠 Run This Project Locally
 
@@ -104,13 +104,13 @@ yesiamrajeev/
 └── README.md                      # You are here
 ```
 
----
+
 
 ## 💡 Pro Tip
 Make more than **4 valid PRs** to different repositories to ensure all count towards Hacktoberfest.
 > Some repos may be excluded — so always aim for 5+ PRs!
 
----
+
 
 ## 🌟 Contributors
 Thanks to these **wonderful people** 👨🏻‍💻 who made this project better with their contributions!
@@ -118,7 +118,7 @@ Thanks to these **wonderful people** 👨🏻‍💻 who made this project bette
 ✨ _Want to see your name here?_  
 Start contributing now — your PR will add you to the list automatically after merge!
 
----
+
 
 ## 📣 Connect With Me
 👤 **Maintainer:** [@yesiamrajeev](https://github.com/yesiamrajeev)  
