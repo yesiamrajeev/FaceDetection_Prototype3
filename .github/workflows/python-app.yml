@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  schedule:
+    - cron: "0 12 * * 0" # Runs weekly (Sunday 12:00 UTC)
+  workflow_dispatch:
 
 jobs:
   build:
@@ -33,7 +36,6 @@ jobs:
           echo "status=failure" >> $GITHUB_OUTPUT
         fi
 
-
     - name: 📝 Update README with status
       run: |
         STATUS="${{ steps.check_app.outputs.status }}"
@@ -43,11 +45,18 @@ jobs:
         else
           BADGE="❌ Failed"
         fi
+        sed -i '/^Last Run:/c\Last Run: '"$BADGE"' on '"$DATE" README.md || echo "Last Run: $BADGE on $DATE" >> README.md
 
-        # Update README.md (replaces line starting with 'Last Run:')
-        sed -i '/^Last Run:/c\Last Run: '"$BADGE"' on '"$DATE" README.md
+    - name: 🤝 Update Contributors Section
+      uses: akhilmhdh/contributors-readme-action@v2.3.6
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        image_size: 100
+        columns_per_row: 6
+        commit_message: "🤝 Auto-update contributors list"
 
     - name: 🚀 Commit changes to README
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        commit_message: "📄 Update README with latest run status"
+        commit_message: "📄 Update README with latest run status and contributors"
