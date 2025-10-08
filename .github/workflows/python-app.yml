@@ -1,4 +1,4 @@
-name: Python Flask App Workflow
+name: Python Flask App Workflow & Pages Deploy
 
 on:
   push:
@@ -7,47 +7,79 @@ on:
     branches: [ master ]
 
 permissions:
-  contents: write   # 👈 allows workflow to push commits to repo
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Checkout code
-      uses: actions/checkout@v3
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
 
-    - name: 🐍 Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: 📦 Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: ✅ Check Python app (Import Test)
-      id: check_app
-      run: |
-        if python -c "import app"; then
-          echo "status=success" >> $GITHUB_OUTPUT
-        else
-          echo "status=failure" >> $GITHUB_OUTPUT
-        fi
+      - name: ✅ Check Python app (Import Test)
+        id: check_app
+        run: |
+          if python -c "import app"; then
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "status=failure" >> $GITHUB_OUTPUT
+          fi
 
-    - name: 📝 Update README with status
-      run: |
-        STATUS="${{ steps.check_app.outputs.status }}"
-        DATE=$(date '+%B %d, %Y')
-        if [[ "$STATUS" == "success" ]]; then
-          BADGE="✅ Successful"
-        else
-          BADGE="❌ Failed"
-        fi
-        sed -i '/^Last Run:/c\Last Run: '"$BADGE"' on '"$DATE" README.md || echo "Last Run: $BADGE on $DATE" >> README.md
+      - name: 📝 Update README with status
+        run: |
+          STATUS="${{ steps.check_app.outputs.status }}"
+          DATE=$(date '+%B %d, %Y')
+          if [[ "$STATUS" == "success" ]]; then
+            BADGE="✅ Successful"
+          else
+            BADGE="❌ Failed"
+          fi
+          sed -i '/^Last Run:/c\Last Run: '"$BADGE"' on '"$DATE" README.md
 
-    - name: 🚀 Commit changes to README
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: "📄 Update README with latest run status and contributors"
+      - name: 🚀 Commit changes to README
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📄 Update README with latest run status and contributors"
+
+      - name: 🏗️ Generate simple project site
+        run: |
+          mkdir -p public
+          echo "<html><head><title>FaceDetection Prototype</title></head><body>" > public/index.html
+          echo "<h1>👩‍💻 FaceDetection_Prototype3</h1>" >> public/index.html
+          echo "<p>Flask-based Face Detection app.</p>" >> public/index.html
+          echo "<p><b>Build Status:</b> ${{ steps.check_app.outputs.status }}</p>" >> public/index.html
+          echo "<p>Updated on $(date)</p>" >> public/index.html
+          echo "</body></html>" >> public/index.html
+
+      - name: 📦 Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
