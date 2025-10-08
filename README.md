@@ -114,6 +114,8 @@ Make more than **4 valid PRs** to different repositories to ensure all count tow
 
 ## 🌟 Contributors
 Thanks to these **wonderful people** 👨🏻‍💻 who made this project better with their contributions!
+<!-- CONTRIBUTORS START -->
+<!-- CONTRIBUTORS END -->
 
 ✨ _Want to see your name here?_  
 Start contributing now — your PR will add you to the list automatically after merge!
