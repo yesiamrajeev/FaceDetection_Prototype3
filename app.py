@@ -129,7 +129,7 @@ def home():
 @app.route('/start',methods=['GET'])
 def start():
     if 'face_recognition_model.pkl' not in os.listdir('static'):
-        return render_template('home.html',totalreg=totalreg(),datetoday2=datetoday2,mess='There is no trained model in the static folder. Please add a new face to continue.') 
+        return render_template('home.html',totalreg=totalreg(),datetoday2=datetoday2,mess='There is no trained model in the static folder. Please add the model to continue the training and process.') 
 
     ret = True
     cap = cv2.VideoCapture(0)
