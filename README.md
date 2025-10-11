@@ -47,16 +47,17 @@ Complete 4 valid pull requests between **October 1–31** to get a tree planted 
 4.  **Open your browser** and navigate to `http://127.0.0.1:5000/`
 
 ## 🗂️ Project Structure
-FaceDetection_Prototype3/
-├── app.py # Main Flask application
-├── haarcascade_frontalface_default.xml # Pre-trained face detection model
-├── requirements.txt # Python dependencies
-├── Attendance/ # Modules for attendance logic
-├── templates/ # HTML templates (UI)
-│ └── home.html
-├── static/ # Static assets (CSS, JS, images)
-└── pycache/ # Python cache directory
-
+    ```bash
+    FaceDetection_Prototype3/
+    ├── app.py # Main Flask application
+    ├── haarcascade_frontalface_default.xml # Pre-trained face detection model
+    ├── requirements.txt # Python dependencies
+    ├── Attendance/ # Modules for attendance logic
+    ├── templates/ # HTML templates (UI)
+    │ └── home.html
+    ├── static/ # Static assets (CSS, JS, images)
+    └── pycache/ # Python cache directory
+    ```
 
 ## 🤝 How to Contribute
 
