@@ -1,135 +1,88 @@
-# 🎯 yesiamrajeev – Face Detection Attendance System 🧠  
+# 🎯 Face Detection Attendance System
 
-### Cultivating Knowledge, Fostering Collaboration 👩‍💻  
-📌 This repository focuses on building a **Face Detection Attendance System** using Python, OpenCV, and Flask — integrating machine learning with real-time web functionality.  
-Our aim is to help beginners understand how AI and web frameworks work together, while fostering community collaboration through **Hacktoberfest 2025**.  
+A real-time face detection-based attendance system built with Python, OpenCV, and Flask. This project is designed to help beginners understand the integration of AI models with web frameworks and to foster open-source collaboration.
 
+[![Hacktoberfest 2025](https://img.shields.io/badge/Hacktoberfest-2025-orange.svg)](https://hacktoberfest.com)
 
+## 🌱 Hacktoberfest 2025 Is Here!
 
-## 🌱 Hacktoberfest 2025 Is Here!  
-Make your **first open-source contribution** right here 🚀  
-Contribute, learn, grow — and help make a greener planet! 🌍  
-> Complete 4 pull requests between **October 1–31** and get a tree planted in your name 🌳  
+Make your first (or next) open-source contribution right here! 🚀
 
-### 🏆 This Project Is Perfect for Beginners!  
-You’ll learn how to:
-- Set up and run a Flask app  
-- Integrate OpenCV for face detection  
-- Structure a Python project  
-- Contribute meaningfully to open source  
+**Contribute, learn, grow — and help make a greener planet!** 🌍
 
+Complete 4 valid pull requests between **October 1–31** to get a tree planted in your name. 🌳
 
+## ✨ Features
 
-## 🧩 How to Contribute
-Follow these simple steps to make your **first pull request** 👇  
+- **Real-time Face Detection**: Utilizes OpenCV and Haar Cascades.
+- **Web-based Interface**: Built with Flask for easy access.
+- **Attendance Logging**: Automatically logs detected faces.
+- **Beginner-Friendly**: Clear structure and documentation.
 
-### 1️⃣ Fork This Repository
-Click the **Fork** button (top-right corner).  
+## 🚀 Quick Start
 
-### 2️⃣ Clone Your Fork
-```bash
-git clone https://github.com/<your-username>/yesiamrajeev.git
-cd yesiamrajeev
-```
+### Prerequisites
 
-### 3️⃣ Create a New Branch
-```bash
-git checkout -b your-branch-name
-```
+- Python 3.8 or higher
+- pip (Python package manager)
 
-### 4️⃣ Make Your Changes  
-There are multiple ways to contribute:
-- Add **new features** or **bug fixes** to `app.py`  
-- Enhance the **UI** inside the `templates/` folder  
-- Improve or replace images inside `static/`  
-- Add your **own version of face detection code** in the `Attendance/` folder  
-- Add your **profile info** under `content/participant/`  
+### Installation
 
-💡 **Tip:** You can also improve the documentation or fix typos in this README!
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yesiamrajeev/FaceDetection_Prototype3.git
+    cd FaceDetection_Prototype3
+    ```
 
+2.  **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
+3.  **Run the application**
+    ```bash
+    python app.py
+    ```
 
-## 📸 Mandatory for Pull Request Approval  
+4.  **Open your browser** and navigate to `http://127.0.0.1:5000/`
 
-To ensure your contribution is verified and **fully approved**:  
-
-✅ **Add at least one screenshot** showing:  
-- Your code changes running successfully  
-- The Flask app’s UI or output (e.g., detected faces, attendance mark screen)  
-
-✅ **Attach a short screen recording (10–30 seconds)** demonstrating your changes working live.  
-You can upload the video as:
-- A `.mp4` file inside the `/static/demo/` folder, **OR**
-- A public link (Google Drive, Loom, etc.) in your PR description  
-
-Example PR description:
-```
-Added enhanced face detection in app.py
-Screenshot
-Video demo
-```
-
-Without screenshots and video proof, **PRs will not be merged**.
+## 🗂️ Project Structure
+FaceDetection_Prototype3/
+├── app.py # Main Flask application
+├── haarcascade_frontalface_default.xml # Pre-trained face detection model
+├── requirements.txt # Python dependencies
+├── Attendance/ # Modules for attendance logic
+├── templates/ # HTML templates (UI)
+│ └── home.html
+├── static/ # Static assets (CSS, JS, images)
+└── pycache/ # Python cache directory
 
 
+## 🤝 How to Contribute
 
-## 🧠 Run This Project Locally
+We love your input! We want to make contributing to this project as easy and transparent as possible.
 
-### Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+Please read our detailed contribution guidelines in **[`CONTRIBUTING.md`](CONTRIBUTING.md)** for all the details on how to fork, make changes, and submit your pull requests.
 
-### Run the App
-```bash
-python app.py
-```
+## 🧾 Code of Conduct
 
-Then open your browser and visit:
-```
-http://127.0.0.1:5000/
-```
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
+
+## 👨‍💻 Contributors
+
+A big thank you to all the wonderful people who have contributed to this project!
+
+
+## 📞 Connect with the Maintainer
+
+- **Maintainer**: [@yesiamrajeev](https://github.com/yesiamrajeev)
+- **Email**: rajeev.220077@gmail.com
+- **Location**: Bhubaneswar, India
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🧾 Folder Structure
-```
-yesiamrajeev/
-├── app.py                         # Main Flask app
-├── Attendance/                    # Attendance-related logic
-├── static/                        # Images, CSS, JS, or demo videos
-├── templates/                     # HTML templates for UI
-├── haarcascade_frontalface_default.xml # Face detection model
-├── requirements.txt               # Required dependencies
-└── README.md                      # You are here
-```
-
-
-
-## 💡 Pro Tip
-Make more than **4 valid PRs** to different repositories to ensure all count towards Hacktoberfest.
-> Some repos may be excluded — so always aim for 5+ PRs!
-
-
-
-## 🌟 Contributors
-Thanks to these **wonderful people** 👨🏻‍💻 who made this project better with their contributions!
-<!-- CONTRIBUTORS START -->
-<!-- CONTRIBUTORS END -->
-
-✨ _Want to see your name here?_  
-Start contributing now — your PR will add you to the list automatically after merge!
-
-
-
-## 📣 Connect With Me
-👤 **Maintainer:** [@yesiamrajeev](https://github.com/yesiamrajeev)  
-📧 **Email:** rajeev.220077@gmail.com  
-🌍 **Location:** Bhubaneswar, India  
-
-Follow and ⭐ the repo to stay updated with new contribution ideas!  
-
----
-
-## 🪴 Let's Code. Collaborate. Contribute.
-> “Every pull request plants a seed — let’s grow together.” 🌱
+> **"Every pull request plants a seed — let’s grow together."** 🌱
