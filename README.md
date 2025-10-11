@@ -102,7 +102,7 @@ Thanks to these wonderful developers who made this project better:
 |-------------|------|-------------------|
 | [@yesiamrajeev](https://github.com/yesiamrajeev) | Project Maintainer | Project architecture, core face detection, Flask integration |
 | [@iamironman-png](https://github.com/iamironman-png) | Contributor | Documentation, code improvements, PR reviews |
-| Abbas | *Next Contributor* | *Make your first PR!* |
+| [@abbasabro] (https://github.com/abbasabro)| Contributor | Documentation |
 
 ### 📈 Contribution Stats
 ![GitHub Contributors](https://img.shields.io/github/contributors/yesiamrajeev/FaceDetection_Prototype3)
