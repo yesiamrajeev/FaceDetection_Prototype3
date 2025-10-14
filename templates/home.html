@@ -1,127 +1,313 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<style type='text/css'>
+  <style type="text/css">
     * {
-        padding: 0;
-        margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 0;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 0.3s, color 0.3s ease;
     }
 
-
     body {
-        background-image: url('https://sail.co.in/sites/default/files/inline-images/bokaro-plant-photo.jpg');
-        background-size: cover;
-        font-family: sans-serif;
-        margin-top: 40px;
-        height: 100vh;
-        padding: 0;
-        margin: 0;
+      background-image: url("https://sail.co.in/sites/default/files/inline-images/bokaro-plant-photo.jpg");
+      background-size: cover;
+      margin-top: 40px;
+      height: 100vh;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1500px;
+      margin: 40px auto 20px auto;
+      padding: 10px 20px;
+      background-color: #0b4c61;
+      border-radius: 20px;
+    }
+
+    .header-container h1 {
+      flex-grow: 1;
+      text-align: center;
+      background-color: transparent !important;
+      border-radius: 0 !important;
+      color: white;
+      padding: 11px 5px;
+      font-size: 36px;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 600px) {
+      .header-container h1 {
+        font-size: 26px; /* Further reduce font size if screen is narrow */
+      }
+    }
+
+    .theme-btn {
+      background-color: #f7f7f7;
+      color: #0b4c61;
+      border: 2px solid #0b4c61;
+      border-radius: 25px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-left: 20px;
+      white-space: nowrap;
+    }
+
+    .theme-btn:hover {
+      background-color: #0b4c61;
+      color: white;
+      border-color: white;
+    }
+
+    .content-box {
+      background-color: rgb(
+        211,
+        211,
+        211,
+        0.5
+      ); /* Semi-transparent background for light mode */
     }
 
     table {
-        border: 1px;
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 86%;
-        margin: auto;
+      border: 1px;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 86%;
+      margin: auto;
+      background-color: white;
+      color: black;
     }
 
     td,
     th {
-        border: 1px solid black !important;
-        padding: 5px;
+      border: 1px solid black !important;
+      padding: 5px;
     }
 
     tr:nth-child(even) {
-        background-color: #dddddd;
+      background-color: #dddddd;
     }
-</style>
 
+    body.dark-mode {
+      background-image: url(https://www.shutterstock.com/image-photo/dhaka-bangladesh-may-24-2023-600nw-2313166331.jpg);
+      background-size: cover;
+      background-color: #121212;
+      color: #e0e0e0;
+    }
 
-<head>
+    body.dark-mode .content-box {
+      background-color: #1e1e1e; /* Solid dark background for the box */
+      color: #e0e0e0; /* All text inside the box is light */
+      border: 1px solid #333; /* Added a subtle border for definition */
+    }
+
+    body.dark-mode table {
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    body.dark-mode th,
+    body.dark-mode td {
+      border: 1px solid #666 !important;
+      color: inherit;
+    }
+
+    body.dark-mode tr:nth-child(even) {
+      background-color: #2a2a2a;
+    }
+
+    body.dark-mode tr:nth-child(odd) {
+      background-color: #1e1e1e; /* Matches main table background */
+    }
+
+    body.dark-mode tr {
+      color: #fff;
+    }
+
+    body.dark-mode .header-container {
+      background-color: #0b4c61;
+    }
+
+    body.dark-mode .btn-primary {
+      background-color: #0b4c61;
+      border-color: #0b4c61;
+      color: white;
+    }
+
+    body.dark-mode input[type="text"],
+    body.dark-mode input[type="number"] {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
+    }
+  </style>
+
+  <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
 
     <title>Employee Face Recognition Based Attendance System</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <div class="header-container">
+      <h1>Face Recognition Based Attendance System</h1>
 
-    <div class='mt-3 text-center'>
-        <h1 style="width: auto;margin: auto;color: white;padding: 11px;font-size: 44px;">Face Recognition Based
-            Attendance System</h1>
+      <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
     </div>
 
     {% if mess%}
-    <p class="text-center" style="color: red;font-size: 20px;">{{ mess }}</p>
+    <p class="text-center" style="color: red; font-size: 20px">{{ mess }}</p>
     {% endif %}
 
-    <div class="row text-center" style="padding: 20px;margin: 20px;">
+    <div class="row text-center" style="padding: 20px; margin: 20px">
+      <div
+        class="col content-box"
+        style="
+          border-radius: 20px;
+          padding: 0px;
+          margin: 0px 10px 10px 10px;
+          min-height: 400px;
+        "
+      >
+        <h2
+          style="
+            border-radius: 20px 20px 0px 0px;
+            background-color: #0b4c61;
+            color: white;
+            padding: 10px;
+          "
+        >
+          Today's Attendance <i class="material-icons">assignment</i>
+        </h2>
+        <a style="text-decoration: none; max-width: 300px" href="/start">
+          <button
+            style="
+              font-size: 24px;
+              font-weight: bold;
+              border-radius: 10px;
+              width: 490px;
+              padding: 10px;
+              margin-top: 30px;
+              margin-bottom: 30px;
+            "
+            type="submit"
+            class="btn btn-primary"
+          >
+            Take Attendance <i class="material-icons">beenhere</i>
+          </button>
+        </a>
+        <table style="background-color: white">
+          <tr>
+            <td><b>S No</b></td>
+            <td><b>Name</b></td>
+            <td><b>ID</b></td>
+            <td><b>Time</b></td>
+          </tr>
+          {% if l %} {% for i in range(l) %}
+          <tr>
+            <td>{{ i+1 }}</td>
+            <td>{{ names[i] }}</td>
+            <td>{{ rolls[i] }}</td>
+            <td>{{ times[i] }}</td>
+          </tr>
+          {% endfor %} {% endif %}
+        </table>
+      </div>
 
-        <div class="col"
-            style="border-radius: 20px;padding: 0px;background-color:rgb(211,211,211,0.5);margin:0px 10px 10px 10px;min-height: 400px;">
-            <h2 style="border-radius: 20px 20px 0px 0px;background-color: #0b4c61;color: white;padding: 10px;">Today's
-                Attendance <i class="material-icons">assignment</i></h2>
-            <a style="text-decoration: none;max-width: 300px;" href="/start">
-                <button
-                    style="font-size: 24px;font-weight: bold;border-radius: 10px;width:490px;padding: 10px;margin-top: 30px;margin-bottom: 30px;"
-                    type='submit' class='btn btn-primary'>Take Attendance <i
-                        class="material-icons">beenhere</i></button>
-            </a>
-            <table style="background-color: white;">
-                <tr>
-                    <td><b>S No</b></td>
-                    <td><b>Name</b></td>
-                    <td><b>ID</b></td>
-                    <td><b>Time</b></td>
-                </tr>
-                {% if l %}
-
-                {% for i in range(l) %}
-                <tr>
-                    <td>{{ i+1 }}</td>
-                    <td>{{ names[i] }}</td>
-                    <td>{{ rolls[i] }}</td>
-                    <td>{{ times[i] }}</td>
-                </tr>
-                {% endfor %}
-                {% endif %}
-            </table>
-
-        </div>
-
-        <div class="col"
-            style="border-radius: 20px;padding: 0px;background-color:rgb(211,211,211,0.5);margin:0px 10px 10px 10px;height: 400px;">
-            <form action='/add' method="POST" enctype="multipart/form-data">
-                <h2 style="border-radius: 20px 20px 0px 0px;background-color: #0b4c61;color: white;padding: 10px;">Add
-                    New User <i class="material-icons">control_point_duplicate</i></h2>
-                <label style="font-size: 20px;"><b>Enter Registration number</b></label>
-                <br>
-                <input type="text" id="newusername" name='newusername'
-                    style="font-size: 20px;margin-top:10px;margin-bottom:10px;" required>
-                <br>
-                <label style="font-size: 20px;"><b>Enter New User Id*</b></label>
-                <br>
-                <input type="number" id="newusereid" name='newuserid'
-                    style="font-size: 20px;margin-top:10px;margin-bottom:10px;" required>
-                <br>
-                <button style="width: 232px;margin-top: 20px;font-size: 20px;" type='submit' class='btn btn-dark'>Add
-                    New User
-                </button>
-                <br>
-                <h5 style="padding: 25px;"><i>Total Users in Database: {{totalreg}}</i></h5>
-            </form>
-        </div>
-
+      <div
+        class="col content-box"
+        style="
+          border-radius: 20px;
+          padding: 0px;
+          margin: 0px 10px 10px 10px;
+          height: 400px;
+        "
+      >
+        <form action="/add" method="POST" enctype="multipart/form-data">
+          <h2
+            style="
+              border-radius: 20px 20px 0px 0px;
+              background-color: #0b4c61;
+              color: white;
+              padding: 10px;
+            "
+          >
+            Add New User <i class="material-icons">control_point_duplicate</i>
+          </h2>
+          <label style="font-size: 20px"
+            ><b>Enter Registration number</b></label
+          >
+          <br />
+          <input
+            type="text"
+            id="newusername"
+            name="newusername"
+            style="font-size: 20px; margin-top: 10px; margin-bottom: 10px"
+            required
+          />
+          <br />
+          <label style="font-size: 20px"><b>Enter New User Id*</b></label>
+          <br />
+          <input
+            type="number"
+            id="newusereid"
+            name="newuserid"
+            style="font-size: 20px; margin-top: 10px; margin-bottom: 10px"
+            required
+          />
+          <br />
+          <button
+            style="width: 232px; margin-top: 20px; font-size: 20px"
+            type="submit"
+            class="btn btn-dark"
+          >
+            Add New User
+          </button>
+          <br />
+          <h5 style="padding: 25px">
+            <i>Total Users in Database: {{totalreg}}</i>
+          </h5>
+        </form>
+      </div>
     </div>
 
-</body>
+    <script>
+      const toggleBtn = document.getElementById("theme-toggle");
+      const body = document.body;
 
+      // Apply stored preference
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark-mode");
+        toggleBtn.textContent = "☀️ Light Mode";
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        const isDark = body.classList.contains("dark-mode");
+        toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+    </script>
+  </body>
 </html>
