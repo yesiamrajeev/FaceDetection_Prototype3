@@ -21,15 +21,14 @@ datetoday2 = date.today().strftime("%d-%B-%Y")
 face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 
-#### If these directories don't exist, create them
-if not os.path.isdir('Attendance'):
-    os.makedirs('Attendance')
-if not os.path.isdir('static'):
-    os.makedirs('static')
-if not os.path.isdir('static/faces'):
-    os.makedirs('static/faces')
-if f'Attendance-{datetoday}.csv' not in os.listdir('Attendance'):
-    with open(f'Attendance/Attendance-{datetoday}.csv','w') as f:
+# Create necessary directories if they don't exist
+for folder in ['Attendance', 'static', 'static/faces']:
+    os.makedirs(folder, exist_ok=True)
+
+# Create today's attendance file if it doesn't exist
+attendance_file = f'Attendance/Attendance-{datetoday}.csv'
+if not os.path.exists(attendance_file):
+    with open(attendance_file, 'w') as f:
         f.write('Name,Roll,Time')
 
 
