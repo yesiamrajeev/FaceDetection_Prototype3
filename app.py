@@ -74,12 +74,10 @@ def train_model():
 
 #### Extract info from today's attendance file in attendance folder
 def extract_attendance():
-    df = pd.read_csv(f'Attendance/Attendance-{datetoday}.csv')
-    names = df['Name']
-    rolls = df['Roll']
-    times = df['Time']
-    l = len(df)
-    return names,rolls,times,l
+    file_path = f'Attendance/Attendance-{datetoday}.csv'
+    df = pd.read_csv(file_path)
+    return df['Name'], df['Roll'], df['Time'], len(df)
+
 
 
 #### Add Attendance of a specific user
