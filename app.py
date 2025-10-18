@@ -82,14 +82,15 @@ def extract_attendance():
 
 #### Add Attendance of a specific user
 def add_attendance(name):
-    username = name.split('_')[0]
-    userid = name.split('_')[1]
+    username, userid = name.split('_', 1)
     current_time = datetime.now().strftime("%H:%M:%S")
-    
-    df = pd.read_csv(f'Attendance/Attendance-{datetoday}.csv')
-    if int(userid) not in list(df['Roll']):
-        with open(f'Attendance/Attendance-{datetoday}.csv','a') as f:
+    file_path = f'Attendance/Attendance-{datetoday}.csv'
+
+    df = pd.read_csv(file_path)
+    if int(userid) not in df['Roll'].astype(int).values:
+        with open(file_path, 'a') as f:
             f.write(f'\n{username},{userid},{current_time}')
+
 
 
 def getallusers():
