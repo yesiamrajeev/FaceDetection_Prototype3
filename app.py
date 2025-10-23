@@ -106,13 +106,13 @@ def getallusers():
     
     return userlist,names,rolls,l
 
-def deletefolder(duser):
-    pics = os.listdir(duser)
-    
-    for i in pics:
-        os.remove(duser+'/'+i)
+import os
+import shutil
 
-    os.rmdir(duser)
+def delete_folder(duser):
+    if os.path.exists(duser):
+        shutil.rmtree(duser)
+
 
 ################## ROUTING FUNCTIONS #########################
 
