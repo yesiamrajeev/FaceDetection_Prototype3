@@ -106,13 +106,13 @@ def getallusers():
     
     return userlist,names,rolls,l
 
-def deletefolder(duser):
-    pics = os.listdir(duser)
-    
-    for i in pics:
-        os.remove(duser+'/'+i)
+import os
+import shutil
 
-    os.rmdir(duser)
+def delete_folder(duser):
+    if os.path.exists(duser):
+        shutil.rmtree(duser)
+
 
 ################## ROUTING FUNCTIONS #########################
 
@@ -124,29 +124,62 @@ def home():
 
 
 #### This function will run when we click on Take Attendance Button
-@app.route('/start',methods=['GET'])
+@app.route('/start', methods=['GET'])
 def start():
-    if 'face_recognition_model.pkl' not in os.listdir('static'):
-        return render_template('home.html',totalreg=totalreg(),datetoday2=datetoday2,mess='There is no trained model in the static folder. Please add the model to continue the training and process.') 
+    model_path = 'static/face_recognition_model.pkl'
+    if not os.path.exists(model_path):
+        return render_template(
+            'home.html',
+            totalreg=totalreg(),
+            datetoday2=datetoday2,
+            mess='No trained model found in the static folder. Please add the model to continue.'
+        )
 
-    ret = True
     cap = cv2.VideoCapture(0)
-    while ret:
-        ret,frame = cap.read()
-        if len(extract_faces(frame))>0:
-            (x,y,w,h) = extract_faces(frame)[0]
-            cv2.rectangle(frame,(x, y), (x+w, y+h), (255, 0, 20), 2)
-            face = cv2.resize(frame[y:y+h,x:x+w], (50, 50))
-            identified_person = identify_face(face.reshape(1,-1))[0]
-            add_attendance(identified_person)
-            cv2.putText(frame,f'{identified_person}',(30,30),cv2.FONT_HERSHEY_SIMPLEX,1,(255, 0, 20),2,cv2.LINE_AA)
-        cv2.imshow('Attendance',frame)
-        if cv2.waitKey(1)==27:
+
+    while True:
+        ret, frame = cap.read()
+        if not ret:
             break
+
+        faces = extract_faces(frame)
+        if faces:
+            x, y, w, h = faces[0]
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 20), 2)
+
+            face = cv2.resize(frame[y:y + h, x:x + w], (50, 50))
+            identified_person = identify_face(face.reshape(1, -1))[0]
+            add_attendance(identified_person)
+
+            cv2.putText(
+                frame,
+                identified_person,
+                (30, 30),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
+                (255, 0, 20),
+                2,
+                cv2.LINE_AA
+            )
+
+        cv2.imshow('Attendance', frame)
+        if cv2.waitKey(1) == 27:  # Press 'Esc' to exit
+            break
+
     cap.release()
     cv2.destroyAllWindows()
-    names,rolls,times,l = extract_attendance()    
-    return render_template('home.html',names=names,rolls=rolls,times=times,l=l,totalreg=totalreg(),datetoday2=datetoday2) 
+
+    names, rolls, times, l = extract_attendance()
+    return render_template(
+        'home.html',
+        names=names,
+        rolls=rolls,
+        times=times,
+        l=l,
+        totalreg=totalreg(),
+        datetoday2=datetoday2
+    )
+
 
 
 #### This function will run when we add a new user
