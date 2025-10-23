@@ -98,27 +98,35 @@
         </div>
 
         <div class="col"
-            style="border-radius: 20px;padding: 0px;background-color:rgb(211,211,211,0.5);margin:0px 10px 10px 10px;height: 400px;">
-            <form action='/add' method="POST" enctype="multipart/form-data">
-                <h2 style="border-radius: 20px 20px 0px 0px;background-color: #0b4c61;color: white;padding: 10px;">Add
-                    New User <i class="material-icons">control_point_duplicate</i></h2>
-                <label style="font-size: 20px;"><b>Enter Registration number</b></label>
-                <br>
-                <input type="text" id="newusername" name='newusername'
-                    style="font-size: 20px;margin-top:10px;margin-bottom:10px;" required>
-                <br>
-                <label style="font-size: 20px;"><b>Enter New User Id*</b></label>
-                <br>
-                <input type="number" id="newusereid" name='newuserid'
-                    style="font-size: 20px;margin-top:10px;margin-bottom:10px;" required>
-                <br>
-                <button style="width: 232px;margin-top: 20px;font-size: 20px;" type='submit' class='btn btn-dark'>Add
-                    New User
-                </button>
-                <br>
-                <h5 style="padding: 25px;"><i>Total Users in Database: {{totalreg}}</i></h5>
-            </form>
-        </div>
+     style="border-radius: 20px; padding: 0; background-color: rgba(211, 211, 211, 0.5); margin: 0 10px 10px 10px; height: 400px;">
+  
+  <form action="/add" method="POST" enctype="multipart/form-data" style="height: 100%;">
+    <h2 style="border-radius: 20px 20px 0 0; background-color: #0b4c61; color: white; padding: 10px; text-align: center;">
+      Add New User 
+      <i class="material-icons" style="vertical-align: middle;">control_point_duplicate</i>
+    </h2>
+
+    <div style="padding: 20px;">
+      <label for="newusername" style="font-size: 18px; font-weight: bold;">Enter Registration Number</label><br>
+      <input type="text" id="newusername" name="newusername"
+             style="font-size: 18px; width: 100%; margin: 10px 0; padding: 5px;" required><br>
+
+      <label for="newuserid" style="font-size: 18px; font-weight: bold;">Enter New User ID*</label><br>
+      <input type="number" id="newuserid" name="newuserid"
+             style="font-size: 18px; width: 100%; margin: 10px 0; padding: 5px;" required><br>
+
+      <button type="submit" class="btn btn-dark"
+              style="width: 100%; margin-top: 20px; font-size: 18px; border-radius: 10px;">
+        Add New User
+      </button>
+
+      <h5 style="padding: 20px 0; text-align: center;">
+        <i>Total Users in Database: {{ totalreg }}</i>
+      </h5>
+    </div>
+  </form>
+</div>
+
 
     </div>
 
