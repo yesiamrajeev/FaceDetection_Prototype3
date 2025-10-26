@@ -1,0 +1,42 @@
+Project Roadmap: Face Detection Attendance System
+
+This document outlines the development plan based on the project's high-level design. The goal is to build a robust and secure prototype by organizing contributions into clear phases.
+
+---
+Phase 1: Foundational Fixes (Priority Tasks)
+---
+
+Our immediate focus is on making the prototype stable and secure. The following tasks will be addressed first:
+
+1.  **Implement Automatic User ID Generation:**
+    *   **Action:** Remove the "User ID" input field from the registration form.
+    *   **Backend Logic:** When a new user is added, the system will automatically generate a new 4-digit ID. It will do this by scanning the 'static/faces' directory, finding the highest existing ID, and incrementing it by one. The first user will be '0001'.
+    *   **Status:** To be implemented.
+
+2.  **Fix Critical Security Vulnerability (Path Traversal):**
+    *   **Action:** Sanitize the 'newusername' input in the '/add' route to prevent malicious inputs like '../../'.
+    *   **Status:** To be implemented.
+
+3.  **Prevent Duplicate Attendance Entries:**
+    *   **Action:** Modify the attendance marking logic. Before adding a new entry to the daily attendance file, check if the user's ID is already present.
+    *   **Status:** To be implemented.
+
+4.  **Improve Error Handling:**
+    *   **Action:** Add checks to ensure a webcam is available before starting capture. Add a check to ensure the 'haarcascade_frontalface_default.xml' file exists at startup.
+    *   **Status:** To be implemented.
+
+---
+Phase 2: Core Improvements (Future Work)
+---
+
+Once the foundation is stable, we will focus on improving the architecture.
+
+*   **Migrate to SQLite Database:** Replace CSV files and directory name parsing with a proper database for storing user info and attendance logs.
+*   **Refactor Inefficient Code:** Optimize loops and redundant operations.
+
+---
+Phase 3: New Features (Future Work)
+---
+
+*   **Administrator Dashboard:** Create a separate interface for managing users.
+*   **Asynchronous Tasks:** Move long-running processes like model training to the background.
