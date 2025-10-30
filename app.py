@@ -135,6 +135,13 @@ def start():
             mess='No trained model found in the static folder. Please add the model to continue.'
         )
 
+    # Get the list of registered roll numbers for the day
+    try:
+        df = pd.read_csv(f'Attendance/Attendance-{datetoday}.csv')
+        present_rolls = df['Roll'].astype(int).tolist()
+    except pd.errors.EmptyDataError:
+        present_rolls = []
+
     cap = cv2.VideoCapture(0)
 
     while True:
@@ -149,7 +156,16 @@ def start():
 
             face = cv2.resize(frame[y:y + h, x:x + w], (50, 50))
             identified_person = identify_face(face.reshape(1, -1))[0]
-            add_attendance(identified_person)
+            
+            # Check if the person is already marked present
+            try:
+                person_id = int(identified_person.split('_')[1])
+                if person_id not in present_rolls:
+                    add_attendance(identified_person)
+                    present_rolls.append(person_id) # Update the list to prevent re-adding in the same session
+            except (IndexError, ValueError):
+                # Handle cases where the identified_person format is unexpected
+                pass
 
             cv2.putText(
                 frame,
