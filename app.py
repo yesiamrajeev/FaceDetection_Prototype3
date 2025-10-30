@@ -75,7 +75,11 @@ def train_model():
 #### Extract info from today's attendance file in attendance folder
 def extract_attendance():
     file_path = f'Attendance/Attendance-{datetoday}.csv'
-    df = pd.read_csv(file_path)
+    try:
+        df = pd.read_csv(file_path)
+    except pd.errors.EmptyDataError:
+        # Handle empty file: return empty lists and length 0
+        return [], [], [], 0
     return df['Name'], df['Roll'], df['Time'], len(df)
 
 
